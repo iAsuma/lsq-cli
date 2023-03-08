@@ -1,0 +1,10 @@
+gfcli:
+  build:
+    name:     "lsq"
+    arch:     "amd64"
+    system:   "linux,darwin,windows"
+    mod:      "none"
+    pack:     ""
+    version:  "v1.0.0"
+    path:   "./bin"
+    extra:    ""
