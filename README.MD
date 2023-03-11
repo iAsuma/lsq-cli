@@ -60,3 +60,4 @@ goframe 2.1及以上版本
 ```
 lsq gen mc -n xxx
 ```
+![](http://img-oss2.udzan.com/md/202303112053277.png)
