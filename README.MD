@@ -17,7 +17,7 @@
 
 2. 指定版本安装
     ```
-    go install github.com/iasuma/lsq-cli/lsq@v1.0.0
+    go install github.com/iasuma/lsq-cli/lsq@v1.0.0 // or @{提交hash}
     ```
 
 3. Check installation
