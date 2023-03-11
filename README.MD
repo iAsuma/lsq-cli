@@ -12,12 +12,12 @@
 
 1. 最新版本安装
     ```
-    go install github.com/iAsuma/lsq-cli/lsq@master
+    go install github.com/iasuma/lsq-cli/lsq@master
     ```
 
 2. 指定版本安装
     ```
-    go install github.com/iAsuma/lsq-cli/lsq@v1.0.2
+    go install github.com/iasuma/lsq-cli/lsq@v1.0.0
     ```
 
 3. Check installation
