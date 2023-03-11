@@ -1,4 +1,4 @@
-module gitlab.corp.qizuang.net/infra/lsq-cli
+module github.com/iasuma/lsq-cli
 
 go 1.15
 

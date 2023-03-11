@@ -6,9 +6,9 @@ import (
 	"github.com/gogf/gf/v2/text/gstr"
 	"github.com/gogf/gf/v2/util/gconv"
 	"github.com/gogf/gf/v2/util/gtag"
-	"gitlab.corp.qizuang.net/infra/lsq-cli/internal/consts"
-	"gitlab.corp.qizuang.net/infra/lsq-cli/utility/mlog"
-	"gitlab.corp.qizuang.net/infra/lsq-cli/utility/utils"
+	"github.com/iasuma/lsq-cli/internal/consts"
+	"github.com/iasuma/lsq-cli/utility/mlog"
+	"github.com/iasuma/lsq-cli/utility/utils"
 )
 
 var (
@@ -25,7 +25,7 @@ const (
 The "dec" command is designed for .....
 `
 
-	cDecArgName = `订单号`
+	cDecArgName = `snowflake ID`
 )
 
 const (
@@ -39,12 +39,12 @@ const (
 
 var (
 	machineIdMap = g.MapIntStr{
-		0: "计划任务",
-		1: "go服务统一发单入口",
-		2: "mobile站发单",
-		3: "www站发单",
-		4: "后台发单（CSM、CDM、OPS等）",
-		5: "API接口发单（H5、App等php接口）",
+		0: "",
+		1: "",
+		2: "",
+		3: "",
+		4: "",
+		5: "",
 	}
 )
 
