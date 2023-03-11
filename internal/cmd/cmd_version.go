@@ -31,7 +31,7 @@ func (c cVersion) Index(ctx context.Context, in cVersionInput) (*cVersionOutput,
 	if info.Git == "" {
 		info.Git = "none"
 	}
-	mlog.Printf(`QiZhuang CLI Tool %s`, consts.Version)
+	mlog.Printf(`lsq CLI Tool %s`, consts.Version)
 	gfVersion, err := c.getGFVersionOfCurrentProject()
 	if err != nil {
 		gfVersion = err.Error()
