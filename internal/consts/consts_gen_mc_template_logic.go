@@ -17,5 +17,5 @@ func {TplLogicCamelCase}() *l{TplLogicCamelCase}{
 	return &inl{TplLogicCamelCase}
 }
 
-// Fill with you ideas below.
+// Fill with you ideas below and delete this line.
 `

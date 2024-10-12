@@ -38,9 +38,13 @@ const (
 	cGenMcArgController = `generate controller file`
 	cGenMcArgLogic      = `generate logic file`
 	cGenMcArgModel      = `generate model file`
-	cGenMcArgOverwrite  = `overwrite the file, danger!`
+	cGenMcArgOverwrite  = `overwrite the file, danger! danger !danger!`
 	cGenMcArgLast       = `generate business file for goframe 2.0 (< 2.1) `
 
+	QuoteStr = "`"
+
+	tplQuote               = `<quote>`
+	tplApiCamelCase        = `{TplApiCamelCase}`
 	tplControllerCamelCase = `{TplControllerCamelCase}`
 	tplLogicCamelCase      = `{TplLogicCamelCase}`
 )
@@ -77,7 +81,7 @@ type (
 
 func (c cGen) Mc(ctx context.Context, in cGenMcInput) (out *cGenMcOutput, err error) {
 	if in.Name == "" {
-		mlog.Fatalf("name is empty")
+		mlog.Fatal("name is empty")
 		return
 	}
 
@@ -112,7 +116,7 @@ func (c cGen) Mc(ctx context.Context, in cGenMcInput) (out *cGenMcOutput, err er
 	}
 
 	if genAll || genApi {
-		generateApiFile(in)
+		generateApiFile(in, nameCamelCase)
 	}
 
 	if genAll || genController {
@@ -130,13 +134,13 @@ func (c cGen) Mc(ctx context.Context, in cGenMcInput) (out *cGenMcOutput, err er
 	return
 }
 
-func generateApiFile(in cGenMcInput) {
+func generateApiFile(in cGenMcInput, nameCamelCase string) {
 	fileName := fmt.Sprintf("%s%s.go", in.Name, defaultApiSuffix)
 	path := gfile.Join(defaultApiPath, fileName)
 
 	if in.Overwrite || !gfile.Exists(path) {
-		if err := gfile.PutContents(path, getApiFileContent()); err != nil {
-			mlog.Fatalf("write api file get something wrong", path, err)
+		if err := gfile.PutContents(path, getApiFileContent(nameCamelCase)); err != nil {
+			mlog.Fatal("write api file get something wrong", path, err)
 		} else {
 			utils.GoFmt(path)
 			mlog.Print("generated:", path)
@@ -150,7 +154,7 @@ func generateControllerFile(in cGenMcInput, nameCamelCase string) {
 
 	if in.Overwrite || !gfile.Exists(path) {
 		if err := gfile.PutContents(path, getControllerContent(nameCamelCase)); err != nil {
-			mlog.Fatalf("write controller file get something wrong", path, err)
+			mlog.Fatal("write controller file get something wrong", path, err)
 		} else {
 			utils.GoFmt(path)
 			mlog.Print("generated:", path)
@@ -169,7 +173,7 @@ func generateLogicFile(in cGenMcInput, nameCamelCase string) {
 
 	if in.Overwrite || !gfile.Exists(path) {
 		if err := gfile.PutContents(path, getLogicContent(nameCamelCase)); err != nil {
-			mlog.Fatalf("write logic file get something wrong", path, err)
+			mlog.Fatal("write logic file get something wrong", path, err)
 		} else {
 			utils.GoFmt(path)
 			mlog.Print("generated:", path)
@@ -183,7 +187,7 @@ func generateModelFile(in cGenMcInput) {
 
 	if in.Overwrite || !gfile.Exists(path) {
 		if err := gfile.PutContents(path, getModelFileContent()); err != nil {
-			mlog.Fatalf("write api file get something wrong", path, err)
+			mlog.Fatal("write api file get something wrong", path, err)
 		} else {
 			utils.GoFmt(path)
 			mlog.Print("generated:", path)
@@ -191,13 +195,20 @@ func generateModelFile(in cGenMcInput) {
 	}
 }
 
-func getApiFileContent() string {
-	return consts.TemplateApiContent
+func getApiFileContent(nameCamelCase string) string {
+	apiContent := gstr.ReplaceByMap(consts.TemplateApiContent, g.MapStrStr{
+		tplApiCamelCase: nameCamelCase,
+		tplQuote:        QuoteStr,
+		"{TplApiName}":  gstr.CaseCamelLower(nameCamelCase),
+	})
+	return apiContent
 }
 
 func getControllerContent(nameCamelCase string) string {
 	controllerContent := gstr.ReplaceByMap(consts.TemplateControllerContent, g.MapStrStr{
 		tplControllerCamelCase: nameCamelCase,
+		tplApiCamelCase:        nameCamelCase,
+		"{tmpModuleName}":      utils.GetModuleName(),
 	})
 
 	return controllerContent

@@ -19,3 +19,7 @@ manifest/output/
 temp/
 bin/
 lsq-cli
+api/
+internal/controller
+internal/model
+internal/logic

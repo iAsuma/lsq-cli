@@ -7,5 +7,5 @@ const TemplateModelContent = `
 
 package model
 
-// Fill with you ideas below.
+// Fill with you ideas below and delete this line.
 `

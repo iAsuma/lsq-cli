@@ -7,11 +7,22 @@ const TemplateControllerContent = `
 
 package controller
 
+import (
+	"context"
+	"{tmpModuleName}/api/v1"
+)
+
 var (
 	{TplControllerCamelCase} = &c{TplControllerCamelCase}{}
 )
 
 type c{TplControllerCamelCase} struct{}
 
-// Fill with you ideas below.
+// Fill with you ideas below and delete this line.
+
+func (c *c{TplControllerCamelCase}) Index(ctx context.Context, req *v1.{TplApiCamelCase}Req) (res *v1.{TplApiCamelCase}Res, err error) {
+	// fill here
+	return
+}
+
 `

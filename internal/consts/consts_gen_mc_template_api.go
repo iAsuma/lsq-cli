@@ -7,5 +7,15 @@ const TemplateApiContent = `
 
 package v1
 
-// Fill with you ideas below.
+import "github.com/gogf/gf/v2/frame/g"
+
+// Fill with you ideas below and delete this line.
+
+type {TplApiCamelCase}Req struct {
+	g.Meta   <quote>path:"/{TplApiName}" tags:"One" method:"get" summary:"first api"<quote>
+	Keywords string <quote>v:"required|length:2,500#请输入关键词|关键词最长不能超过500" json:"keywords" dc:"词"<quote>
+}
+
+type {TplApiCamelCase}Res struct {
+}
 `

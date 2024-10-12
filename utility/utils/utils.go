@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"github.com/gogf/gf/v2/os/gctx"
 	"github.com/gogf/gf/v2/os/gproc"
+	"golang.org/x/mod/modfile"
+	"os"
 	"regexp"
 )
 
@@ -25,4 +27,19 @@ func IsOrderNo(str string) bool {
 
 	reg := regexp.MustCompile(regRuler)
 	return reg.MatchString(str)
+}
+
+func GetModuleName() string {
+	data, err := os.ReadFile("go.mod")
+	if err != nil {
+		return ""
+	}
+
+	// 解析go.mod文件
+	modFile, err := modfile.Parse("go.mod", data, nil)
+	if err != nil {
+		return ""
+	}
+
+	return modFile.Module.Mod.Path
 }
