@@ -7,6 +7,8 @@ const TemplateLogicContent = `
 
 package logic
 
+import "context"
+
 var (
 	inl{TplLogicCamelCase} = l{TplLogicCamelCase}{}
 )
@@ -18,4 +20,8 @@ func {TplLogicCamelCase}() *l{TplLogicCamelCase}{
 }
 
 // Fill with you ideas below and delete this line.
+
+func (l *l{TplLogicCamelCase}) FirstCall(ctx context.Context) error {
+	return nil
+}
 `
